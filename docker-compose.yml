@@ -1,0 +1,15 @@
+services:
+  portfolio:
+    image: portfolio:latest        # la imagen se construye en el VPS vía CI/CD
+    container_name: portfolio
+    restart: unless-stopped
+    ports:
+      - "3000:3000"                # Nginx Proxy Manager apuntará aquí
+    environment:
+      - NODE_ENV=production
+    networks:
+      - proxy-network              # red compartida con Nginx Proxy Manager
+
+networks:
+  proxy-network:
+    external: true                 # debe existir; se crea una sola vez (ver README)
