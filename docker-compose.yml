@@ -8,8 +8,8 @@ services:
     environment:
       - NODE_ENV=production
     networks:
-      - proxy-network              # red compartida con Nginx Proxy Manager
+      - proxy_network              # red compartida con Nginx Proxy Manager
 
 networks:
-  proxy-network:
+  proxy_network:
     external: true                 # debe existir; se crea una sola vez (ver README)
