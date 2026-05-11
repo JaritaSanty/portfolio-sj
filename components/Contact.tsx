@@ -10,8 +10,6 @@ import {
   Send,
   Globe,
   Linkedin,
-  Github,
-  Youtube,
 } from "lucide-react";
 
 type Status = "idle" | "submitting" | "success" | "error";
@@ -81,8 +79,6 @@ export function Contact() {
 
           <div className="flex flex-wrap items-center gap-3">
             <SocialLink href={profile.socials.linkedin} label="LinkedIn" icon={Linkedin} />
-            <SocialLink href={profile.socials.github} label="GitHub" icon={Github} />
-            <SocialLink href={profile.socials.youtube} label="YouTube" icon={Youtube} />
             <a
               href={profile.websites.company}
               target="_blank"
