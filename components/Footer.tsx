@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { profile } from "@/data/profile";
 import { navLinks } from "@/data/nav";
-import { Github, Linkedin, Mail, Youtube } from "lucide-react";
+import { Linkedin, Mail } from "lucide-react";
 
 export function Footer() {
   const year = new Date().getFullYear();
@@ -37,24 +37,6 @@ export function Footer() {
               <Linkedin className="h-4 w-4" />
             </a>
             <a
-              href={profile.socials.github}
-              target="_blank"
-              rel="noreferrer"
-              aria-label="GitHub"
-              className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-border text-muted-foreground transition hover:border-brand-400 hover:text-brand-600 dark:hover:text-brand-300"
-            >
-              <Github className="h-4 w-4" />
-            </a>
-            <a
-              href={profile.socials.youtube}
-              target="_blank"
-              rel="noreferrer"
-              aria-label="YouTube"
-              className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-border text-muted-foreground transition hover:border-brand-400 hover:text-brand-600 dark:hover:text-brand-300"
-            >
-              <Youtube className="h-4 w-4" />
-            </a>
-            <a
               href={`mailto:${profile.email}`}
               aria-label="Email"
               className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-border text-muted-foreground transition hover:border-brand-400 hover:text-brand-600 dark:hover:text-brand-300"
@@ -87,7 +69,7 @@ export function Footer() {
                 rel="noreferrer"
                 className="text-muted-foreground hover:text-foreground"
               >
-                santiceducation.com
+                SanTIC Education
               </a>
             </li>
             <li>
