@@ -1,0 +1,44 @@
+name: Deploy Portfolio to VPS
+
+on:
+  push:
+    branches:
+      - main          # se dispara en merge de cualquier PR a main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. Checkout del código
+      - name: Checkout código
+        uses: actions/checkout@v4
+
+      # 2. Conectarse al VPS vía SSH y desplegar
+      - name: Deploy en VPS via SSH
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USER }}
+          key: ${{ secrets.VPS_SSH_KEY }}
+          port: ${{ secrets.VPS_PORT }}       # normalmente 22
+          script: |
+            set -e
+
+            # Ir al directorio del proyecto en el VPS
+            cd ${{ secrets.PROJECT_PATH }}
+
+            echo "📥 Actualizando código..."
+            git pull origin main
+
+            echo "🐳 Construyendo imagen Docker..."
+            docker build -t portfolio:latest .
+
+            echo "🚀 Reiniciando contenedor..."
+            docker compose down
+            docker compose up -d
+
+            echo "🧹 Limpiando imágenes antiguas..."
+            docker image prune -f
+
+            echo "✅ Deploy completado"
